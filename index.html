@@ -5,21 +5,52 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Document</title>
         <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+        <script>
+            AFRAME.registerComponent('play-pause', {
+                init: function () {
+                    let myVideo = document.querySelector('#myVideo')
+                    let videoControls = document.querySelector('#videoControls')
+                    this.el.addEventListener('click', function () {
+                        if (myVideo.paused) {
+                            myVideo.play()
+                            videoControls.setAttribute('src', '#pause')
+                        } else {
+                            myVideo.pause()
+                            videoControls.setAttribute('src', '#play')
+                        }
+                    })
+                },
+            })
+        </script>
     </head>
     <body>
         <a-scene>
             <a-assets>
-                <video id="video" autoplay loop="true" src="./assets/video.mp4"></video>
-                <a-asset-item id="room" src="./assets/LivingRoom.gltf"></a-asset-item>
+                <a-asset-item id="room" src="assets/LivingRoom.gltf"></a-asset-item>
+                <video id="myVideo" loop="true" src="assets/video.mp4"></video>
+                <img id="play" src="assets/play.png" />
+                <img id="pause" src="assets/pause.png" />
             </a-assets>
+
+            <a-camera><a-cursor></a-cursor></a-camera>
             <a-entity gltf-model="#room" rotation="0 -90 0" position="0 0 -0.5"></a-entity>
             <a-video
-                src="#video"
+                src="#myVideo"
                 width="2.1"
                 height="1.4"
                 position="0.185 1.593 -2.500"
                 rotation="0 0 0"
-            ></a-video>
+            >
+                <a-image
+                    id="videoControls"
+                    src="#play"
+                    position="0 -0.5 1"
+                    scale=".3 .3 .3"
+                    play-pause
+                ></a-image>
+                ></a-video
+            >
+
             <a-plane
                 position="0 0.2 0"
                 rotation="-90 0 0"
@@ -29,5 +60,6 @@
             ></a-plane>
             <a-sky color="#00bfff"></a-sky>
         </a-scene>
+        <script src="index.js"></script>
     </body>
 </html>
