@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Document</title>
+        <script src="./index.js"></script>
+        <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    </head>
+    <body>
+        <a-scene>
+            <a-assets>
+                <a-asset-item id="room" src="./assets/LivingRoom.gltf"></a-asset-item>
+                <video id="video" autoplay loop="true" src="./assets/video.mp4"></video>
+            </a-assets>
+            <a-entity gltf-model="#room" rotation="0 -90 0" position="0 0 -0.5"></a-entity>
+            <a-video
+                src="#video"
+                width="2.1"
+                height="1.4"
+                position="0.185 1.593 -2.500"
+                rotation="0 0 0"
+            ></a-video>
+            <a-plane
+                position="0 0.2 0"
+                rotation="-90 0 0"
+                width="50"
+                height="50"
+                color="#654321"
+            ></a-plane>
+            <a-sky color="#00bfff"></a-sky>
+        </a-scene>
+    </body>
+</html>
